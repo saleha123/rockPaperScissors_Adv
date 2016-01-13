@@ -1,26 +1,66 @@
 var userPoint = 0;
 var aiPoint = 0;
 
-// This function returns the selection of the computer
 function getAISelection() {
-    //TODO: randomly choose between 'rock', 'paper', or 'scissors'
+var random_num = Math.random() * 3;
+var rock_side = Math.floor(random_num + 1);
+  
+var comp_choice;
+if(rock_side==3){
+  comp_choice="rock";
 }
 
-// This function picks the winner
-function pickWinner(userValue, aiValue) {
-    //TODO: pick the correct winner: user or ai
-    //TODO: Add one point for the winner
+else if(rock_side==2){
+  comp_choice="paper";
+}
+ 
+else if(rock_side==1){
+  comp_choice="scissors";
+}
+  return(comp_choice); 
 }
 
-// This function sets the scoreboard with the correct points
-function setScore() {
-
+function pickWinner(comp_choice, user_choice) {
+ if (comp_choice === "rock" && user_choice === "paper"){
+   return "user";
+ }
+   else if(comp_choice === "paper" && user_choice === "scissors"){
+     return "user";
+   }
+else if(comp_choice === "scissors" && user_choice === "rock"){
+  return "user";
+   }
+   else if(comp_choice === "rock" && user_choice === "rock"){
+  return "draw";
+   }
+   else if(comp_choice === "paper" && user_choice === "paper"){
+  return "draw";
+   }
+   else if(comp_choice === "scissors" && user_choice === "scissors"){
+  return "draw";
+   }
+   else if(comp_choice === "paper" && user_choice === "rock"){
+  return "api";
+   }
+   else if(comp_choice === "scissros" && user_choice === "paper"){
+  return "api";
+   }
+   else if(comp_choice === "rock" && user_choice === "scissors"){
+  return "api";
+   }
 }
+// this function set the score 
+function setScore(){
+    
+}
+    
 
 // This function captures the click and picks the winner
 function evaluate(evt) {
     var userValue = evt.target.getAttribute('id');
+    alert(userValue);
     var aiValue = getAISelection();
+    
 
     var winner = pickWinner(userValue, aiValue);
 
@@ -35,5 +75,13 @@ function evaluate(evt) {
 
 // This function runs on page load
 $(document).ready(function(){
+    alert('sanity')
+    $('.token'). click( function(e) {
+        evaluate(e);
+    });
+    
+});    
+        
+        
+    
 
-});
